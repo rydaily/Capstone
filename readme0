@@ -1,0 +1,38 @@
+***UPDATING ANDROID STUDIO***
+
+1. http://tools.android.com/download/studio/canary/latest/
+
+Download the newest version of Android (1.4 RC 3)
+
+IF YOU HAVE AN OLD VERSION OF ANDROID STUDIO (LIKE ME), YOU MAY BE PROMPTED TO DOWNLOAD/UPDATE STUFF IN YOUR SDK WHEN YOU OPEN THE NEWEST VERSION.
+
+2. http://imgur.com/a/pmvU3
+
+For our project, refer to the above images for what to download. Some of it might be unnecessary or you already have downloaded/updated.
+
+To get to this page:
+1. Select Configure
+2. Select SDK Manager
+3. SDK Platforms and SDK Tools are the two tabs 
+
+
+***INITIAL PUSH***
+
+1. Go to https://github.com/dmanibus/Capstone (you are here already)
+
+2. http://imgur.com/T81L7dh
+
+Choose a parent directory and directory.
+
+3. Choose yes to remove the vcs root IF prompted (I don't know what the hell it does I think it has to do with my renaming the folder)
+
+4. Build -> Make Project
+
+5a. Set up your AVD emulator (Tools-Android-AVD)
+5b. Refer to image for settings. We will be using the Nexus 5 with API 22 because the Nexus 5 screen is close in size to samsungs galaxy s5
+http://imgur.com/WggdYyx
+
+6a. Run app on emulator
+http://imgur.com/yDy8q0Z
+
+7. Confirm that it works by posting here. 
