@@ -43,6 +43,12 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        int width = getResources().getDisplayMetrics().widthPixels/2;
+
+        DrawerLayout.LayoutParams params = (android.support.v4.widget.DrawerLayout.LayoutParams) navigationView.getLayoutParams();
+        params.width = width;
+        navigationView.setLayoutParams(params);
     }
 
     @Override
