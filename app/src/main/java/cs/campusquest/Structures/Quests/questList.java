@@ -8,4 +8,11 @@ public class questList extends LinkedList {
         super();
         return;
     }
+
+    public void addQuest(){
+        // Calls super.push()
+    }
+
+    public void getQuest(){
+    }
 }
