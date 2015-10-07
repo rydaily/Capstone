@@ -9,10 +9,8 @@ public class questList extends LinkedList {
         return;
     }
 
-    public void addQuest(){
-        // Calls super.push()
-    }
-
-    public void getQuest(){
+    public void addQuest(quest hQuest){
+        super.push(hQuest);
+        return;
     }
 }
