@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_activeQuests" android:icon="@android:drawable/ic_dialog_alert"
+            android:title="Active Quests" />
+        <item android:id="@+id/nav_availableQuests" android:icon="@android:drawable/ic_dialog_map"
+            android:title="Available Quests" />
+        <item android:id="@+id/nav_friendsList" android:icon="@drawable/ic_menu_allfriends"
+            android:title="Friends" />
+        <item android:id="@+id/nav_trophyCase" android:icon="@drawable/ic_menu_star"
+            android:title="Trophy Case" />
+    </group>
+
+    <item android:title="Loopoopoopoopoop">
+        <menu>
+            <item android:id="@+id/nav_laptop" android:icon="@android:drawable/ic_menu_zoom"
+                android:title="Ryan's Laptop" />
+        </menu>
+    </item>
+
+</menu>
