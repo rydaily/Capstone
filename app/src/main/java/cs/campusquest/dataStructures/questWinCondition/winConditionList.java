@@ -1,4 +1,4 @@
-package cs.campusquest.Structures.Conditions;
+package cs.campusquest.dataStructures.questWinCondition;
 
 import java.util.LinkedList;
 

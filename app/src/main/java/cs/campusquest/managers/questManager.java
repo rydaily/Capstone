@@ -1,4 +1,4 @@
-package cs.campusquest.Managers;
+package cs.campusquest.managers;
 
 /**
  * Created by vv on 10/7/2015.

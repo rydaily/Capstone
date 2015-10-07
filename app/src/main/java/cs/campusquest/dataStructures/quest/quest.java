@@ -1,4 +1,4 @@
-package cs.campusquest.Structures.Quests;
+package cs.campusquest.dataStructures.quest;
 
 /**
  * Created by vv on 10/7/2015.

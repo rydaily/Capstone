@@ -1,4 +1,4 @@
-package cs.campusquest.Structures.Quests;
+package cs.campusquest.dataStructures.quest;
 
 import java.util.LinkedList;
 

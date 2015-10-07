@@ -1,6 +1,6 @@
-package cs.campusquest.Structures.Conditions.Types;
+package cs.campusquest.dataStructures.questWinCondition.winConditionType;
 
-import cs.campusquest.Structures.Conditions.winCondition;
+import cs.campusquest.dataStructures.questWinCondition.winCondition;
 
 public class qrWinCondition extends winCondition {
     String sRequiredValue;
