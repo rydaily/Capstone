@@ -17,4 +17,8 @@ public class winConditionList extends LinkedList {
         winCondition hCondition = (winCondition) super.get(iIndex);
         return hCondition;
     }
+
+    public int getNumConditions(){
+        return(super.size());
+    }
 }

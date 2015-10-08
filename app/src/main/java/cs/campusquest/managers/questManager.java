@@ -16,6 +16,23 @@ public class questManager {
     }
 
     private void populateQuestList(){
+        loadQuestsFromDatabase();
+        loadQuestsFromServer();
+        return;
+    }
+
+    /**
+     * Loads quests currently saved in the local database and populates hQuestList by pushing them
+     * into it
+     */
+    private void loadQuestsFromDatabase(){
+
+    }
+
+    /**
+     * Loads quests currently on the server and populates hQuestList by pushing them into it
+     */
+    private void loadQuestsFromServer(){
 
     }
 
