@@ -1,5 +1,6 @@
 package cs.campusquest;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -108,9 +109,6 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(String id){
-        if (id.equals("Item 2")){
-            TextView txtCenter = (TextView) findViewById(R.id.idTxtCenter);
-            txtCenter.setText("Caaaampus Quest!");
-        }
+        //do magic
     }
 }
