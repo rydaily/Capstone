@@ -27,4 +27,22 @@
     -->
     <item name="fragment_availablequest" type="layout">@layout/fragment_availablequest_list</item>
 
+    <!--
+    Layout alias to replace the single-pane version of the layout with a
+    two-pane version on Large screens.
+
+    For more on layout aliases, see:
+    http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
+    -->
+    <item name="fragment_friendslist" type="layout">@layout/fragment_friendslist_list</item>
+
+    <!--
+    Layout alias to replace the single-pane version of the layout with a
+    two-pane version on Large screens.
+
+    For more on layout aliases, see:
+    http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
+    -->
+    <item name="fragment_trophy" type="layout">@layout/fragment_trophy_list</item>
+
 </resources>
