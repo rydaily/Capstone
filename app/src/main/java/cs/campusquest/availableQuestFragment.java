@@ -2,7 +2,7 @@ package cs.campusquest;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cs.campusquest.dummy.DummyContent;
 
@@ -74,8 +77,12 @@ public class availableQuestFragment extends Fragment implements AbsListView.OnIt
         }
 
         // TODO: Change Adapter to display your content
+        ArrayList myArr = new ArrayList();
+        myArr.add(0, "Hello");
+        myArr.add(1, "Available");
+        myArr.add(2, "Quests");
         mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+                android.R.layout.simple_expandable_list_item_1, android.R.id.text1, myArr);
     }
 
     @Override
