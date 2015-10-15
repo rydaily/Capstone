@@ -10,10 +10,5 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior" tools:showIn="@layout/app_bar_home"
     tools:context="cs.campusquest.HomeActivity">
 
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/idFrgItem"
-        class = "cs.campusquest.ItemFragment"/>
 
 </RelativeLayout>
