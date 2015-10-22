@@ -95,7 +95,7 @@ public class availableQuestFragment extends Fragment implements AbsListView.OnIt
             }
         } catch (NullPointerException e){
 
-            }
+        }
 
 
         mAdapter = new ArrayAdapter<quest>(getActivity(),
