@@ -1,20 +1,28 @@
 package cs.campusquest;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Application;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cs.campusquest.dataStructures.quest.quest;
 import cs.campusquest.dummy.DummyContent;
 
 /**
@@ -32,6 +40,7 @@ public class availableQuestFragment extends Fragment implements AbsListView.OnIt
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private AppState state;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -75,13 +84,17 @@ public class availableQuestFragment extends Fragment implements AbsListView.OnIt
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        Application application = (Application)AppState.getContext();
+        this.state = (AppState)application;
 
         // TODO: Change Adapter to display your content
         ArrayList myArr = new ArrayList();
-        myArr.add(0, "Hello");
-        myArr.add(1, "Available");
-        myArr.add(2, "Quests");
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
+        for (int i = 0; i < this.state.hQuestData.hQuestList.size(); i++){
+            myArr.add(i, this.state.hQuestData.hQuestList.getQuest(i).getQuestName());
+        }
+
+
+        mAdapter = new ArrayAdapter<quest>(getActivity(),
                 android.R.layout.simple_expandable_list_item_1, android.R.id.text1, myArr);
     }
 
@@ -122,8 +135,33 @@ public class availableQuestFragment extends Fragment implements AbsListView.OnIt
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            //changed the returned int type from getQuestID to string to match the onFragmentInteraction listener TODO:
+            mListener.onFragmentInteraction(Integer.toString(this.state.hQuestData.hQuestList.getQuest(position).getQuestID()));
         }
+        showInfoPopUp(position);
+
+    }
+
+    private void showInfoPopUp(int index){
+        /*http://stackoverflow.com/questions/2115758/how-to-display-alert-dialog-in-android*/
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        builder1.setMessage(this.state.hQuestData.hQuestList.getQuest(index).getQuestDescription());
+        builder1.setCancelable(true);
+        builder1.setPositiveButton("Add",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        builder1.setNegativeButton("Close",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 
     /**
@@ -139,6 +177,8 @@ public class availableQuestFragment extends Fragment implements AbsListView.OnIt
         }
     }
 
+
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -152,6 +192,7 @@ public class availableQuestFragment extends Fragment implements AbsListView.OnIt
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(String id);
+
     }
 
 }

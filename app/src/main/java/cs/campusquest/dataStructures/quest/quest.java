@@ -71,4 +71,15 @@ public class quest {
     public boolean isComplete(){
         return(this.bIsComplete);
     }
+
+    public int getQuestID(){
+        return this.iQuestID;
+    }
+    public String getQuestName(){
+        return this.sQuestName;
+    }
+
+    public String getQuestDescription(){
+        return this.sQuestDescription;
+    }
 }

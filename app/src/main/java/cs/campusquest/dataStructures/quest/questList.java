@@ -14,7 +14,7 @@ public class questList extends LinkedList {
     public questList(boolean useDummy){
         super();
         if (useDummy) {
-            for (int x = 0; x <= DummyContent.dAvailableQuestsList.size(); x++){
+            for (int x = 0; x < DummyContent.dAvailableQuestsList.size(); x++){
                 addQuest(new quest(DummyContent.dAvailableQuestsList.get(x)));
             }
             return;
@@ -24,5 +24,9 @@ public class questList extends LinkedList {
     public void addQuest(quest hQuest){
         super.push(hQuest);
         return;
+    }
+
+    public quest getQuest(int index){
+        return (quest)get(index);
     }
 }

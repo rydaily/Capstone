@@ -9,7 +9,7 @@ public class questManager {
      * to a single quest that has either been loaded from the device's local database, or the
      * server.
      */
-    private questList hQuestList;
+    public questList hQuestList;
 
     public questManager(){
         this.hQuestList = new questList();
@@ -20,6 +20,7 @@ public class questManager {
         if (useDummy){
             this.hQuestList = new questList(true);
         }
+        return;
 
     }
 

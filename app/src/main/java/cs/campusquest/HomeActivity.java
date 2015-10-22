@@ -81,7 +81,7 @@ public class HomeActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_dummyData) {
-            state.setDummyData();
+            this.state.setDummyData();
             return true;
         }
 
