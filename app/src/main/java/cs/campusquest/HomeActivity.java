@@ -106,6 +106,8 @@ public class HomeActivity extends AppCompatActivity
             fragmentClass = trophyFragment.class;
         } else if (id == R.id.nav_qrCode) {
             fragmentClass = friendsQrFragment.class;
+        } else if (id == R.id.nav_addFriend) {
+            fragmentClass = friendsQrFragment.class;
         } else {
             fragmentClass = ItemFragment.class;
         }

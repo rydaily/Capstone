@@ -16,6 +16,7 @@
         <menu>
             <item android:id="@+id/nav_qrCode" android:icon="@android:drawable/ic_menu_zoom"
                 android:title="QR Code" />
+            <item android:id="@+id/nav_addFriend" android:icon="@android:drawable/ic_menu_add" android:title="Add Friend" />
         </menu>
     </item>
 
