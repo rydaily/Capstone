@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, activeQuestFragment.OnFragmentInteractionListener, ItemFragment.OnFragmentInteractionListener, availableQuestFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener, activeQuestFragment.OnFragmentInteractionListener, ItemFragment.OnFragmentInteractionListener, availableQuestFragment.OnFragmentInteractionListener, friendsFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
