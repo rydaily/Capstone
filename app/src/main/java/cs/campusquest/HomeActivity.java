@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, activeQuestFragment.OnFragmentInteractionListener, ItemFragment.OnFragmentInteractionListener, availableQuestFragment.OnFragmentInteractionListener, friendsFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener, activeQuestFragment.OnFragmentInteractionListener, ItemFragment.OnFragmentInteractionListener, availableQuestFragment.OnFragmentInteractionListener, friendsFragment.OnFragmentInteractionListener, trophyFragment.OnFragmentInteractionListener, friendsQrFragment.OnFragmentInteractionListener{
     private AppState state;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,8 +104,8 @@ public class HomeActivity extends AppCompatActivity
             fragmentClass = friendsFragment.class;
         } else if (id == R.id.nav_trophyCase) {
             fragmentClass = trophyFragment.class;
-        } else if (id == R.id.nav_laptop) {
-            fragmentClass = ItemFragment.class;
+        } else if (id == R.id.nav_qrCode) {
+            fragmentClass = friendsQrFragment.class;
         } else {
             fragmentClass = ItemFragment.class;
         }

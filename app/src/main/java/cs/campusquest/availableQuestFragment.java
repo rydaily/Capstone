@@ -89,9 +89,13 @@ public class availableQuestFragment extends Fragment implements AbsListView.OnIt
 
         // TODO: Change Adapter to display your content
         ArrayList myArr = new ArrayList();
-        for (int i = 0; i < this.state.hQuestData.hQuestList.size(); i++){
-            myArr.add(i, this.state.hQuestData.hQuestList.getQuest(i).getQuestName());
-        }
+        try {
+            for (int i = 0; i < this.state.hQuestData.hQuestList.size(); i++) {
+                myArr.add(i, this.state.hQuestData.hQuestList.getQuest(i).getQuestName());
+            }
+        } catch (NullPointerException e){
+
+            }
 
 
         mAdapter = new ArrayAdapter<quest>(getActivity(),

@@ -12,10 +12,10 @@
             android:title="Trophy Case" />
     </group>
 
-    <item android:title="Loopoopoopoopoop">
+    <item android:title="">
         <menu>
-            <item android:id="@+id/nav_laptop" android:icon="@android:drawable/ic_menu_zoom"
-                android:title="Ryan's Laptop" />
+            <item android:id="@+id/nav_qrCode" android:icon="@android:drawable/ic_menu_zoom"
+                android:title="QR Code" />
         </menu>
     </item>
 
