@@ -1,21 +1,33 @@
 package cs.campusquest.dataStructures.quest;
 
+import cs.campusquest.dummy.DummyContent;
+
 public class quest {
     private int     iQuestID;
     private String  sQuestName;
     private String  sQuestDescription;
+    private boolean bIsActive;
     private boolean bIsComplete;
 
     public quest(){
-        this(-1, null, null, false);
+        this(-1, null, null,false, false);
         return;
     }
 
-    public quest(int _iQuestID, String _sQuestName, String _sQuestDescription, boolean _bIsComplete){
+    public quest(int _iQuestID, String _sQuestName, String _sQuestDescription, boolean _bIsActive, boolean _bIsComplete){
         setQuestID(_iQuestID);
         setQuestName(_sQuestName);
         setsQuestDescription(_sQuestDescription);
+        setActiveFlag(_bIsActive);
         setCompletionFlag(_bIsComplete);
+    }
+
+    public quest(DummyContent.DummyQuest _dQuest){
+        setQuestID(_dQuest.qId);
+        setQuestName(_dQuest.qTitle);
+        setsQuestDescription(_dQuest.qDescription);
+        setActiveFlag(_dQuest.qIsActive);
+        setCompletionFlag(_dQuest.qIsComplete);
     }
 
     public void setQuestID(int _iQuestID){
@@ -30,6 +42,11 @@ public class quest {
 
     public void setsQuestDescription(String _sQuestDescription){
         this.sQuestDescription = _sQuestDescription;
+        return;
+    }
+
+    public void setActiveFlag(boolean _bIsActive){
+        this.bIsActive = _bIsActive;
         return;
     }
 

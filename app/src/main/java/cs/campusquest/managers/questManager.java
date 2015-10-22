@@ -1,6 +1,7 @@
 package cs.campusquest.managers;
 
 import cs.campusquest.dataStructures.quest.questList;
+import cs.campusquest.dummy.DummyContent;
 
 public class questManager {
     /**
@@ -13,6 +14,13 @@ public class questManager {
     public questManager(){
         this.hQuestList = new questList();
         return;
+    }
+
+    public questManager(boolean useDummy){
+        if (useDummy){
+            this.hQuestList = new questList(true);
+        }
+
     }
 
     private void populateQuestList(){

@@ -21,10 +21,11 @@ import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, activeQuestFragment.OnFragmentInteractionListener, ItemFragment.OnFragmentInteractionListener, availableQuestFragment.OnFragmentInteractionListener, friendsFragment.OnFragmentInteractionListener{
-
+    private AppState state;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.state = (AppState) getApplicationContext();
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -79,7 +80,8 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_dummyData) {
+            state.setDummyData();
             return true;
         }
 

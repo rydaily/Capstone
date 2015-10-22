@@ -29,4 +29,8 @@ public class AppState extends Application{
     public void setQuestData(questManager _hQuestData){
         hQuestData = _hQuestData;
     }
+
+    public void setDummyData() {
+        this.hQuestData = new questManager(true);
+    }
 }
