@@ -29,4 +29,14 @@ public class questList extends LinkedList {
     public quest getQuest(int index){
         return (quest)get(index);
     }
+
+    public quest getQuestByID(int id){
+         for (int i = 0; i < size(); i++){
+             if (getQuest(i).getQuestID() == id){
+                 return (quest)get(i);
+             }
+         }
+
+        throw new IllegalArgumentException();
+    }
 }

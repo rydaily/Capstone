@@ -88,6 +88,7 @@ public class availableQuestFragment extends Fragment implements AbsListView.OnIt
         this.state = (AppState)application;
 
         // TODO: Change Adapter to display your content
+        // TODO: this array should only be populated by nonactive (false) quests.
         ArrayList myArr = new ArrayList();
         try {
             for (int i = 0; i < this.state.getQuestData().getQuestList().size(); i++) {
@@ -151,13 +152,17 @@ public class availableQuestFragment extends Fragment implements AbsListView.OnIt
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage(this.state.getQuestData().getQuestList().getQuest(index).getQuestDescription());
         builder1.setCancelable(true);
+
+        //set the selectedQuestID to the questID thats being shown
+        this.state.setSelectedQuestID(this.state.getQuestData().getQuestList().getQuest(index).getQuestID());
+
         builder1.setPositiveButton("Add",
                 new DialogInterface.OnClickListener(){
                     private AppState state;
                     public void onClick(DialogInterface dialog, int id) {
                         Application application = (Application)AppState.getContext();
                         this.state = (AppState)application;
-                        //this.state.hQuestData.hQuestList.getQuest(id).setActiveFlag(true);
+                        this.state.setSelectedQuestActive();
                         dialog.cancel();
                     }
                 });

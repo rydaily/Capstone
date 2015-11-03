@@ -71,6 +71,7 @@ public class quest {
     public boolean isComplete(){
         return(this.bIsComplete);
     }
+    public boolean isActive() { return(this.bIsActive);}
 
     public int getQuestID(){
         return this.iQuestID;

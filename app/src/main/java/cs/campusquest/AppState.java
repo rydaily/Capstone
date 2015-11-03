@@ -57,5 +57,9 @@ public class AppState extends Application{
         }
     }
 
+    public void setSelectedQuestActive(){
+        hQuestData.getQuestList().getQuestByID(this.selectedQuestID).setActiveFlag(true);
+    }
+
     public int getSelectedQuestID(){ return this.selectedQuestID;}
 }

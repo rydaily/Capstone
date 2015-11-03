@@ -1,6 +1,7 @@
 package cs.campusquest;
 
 import android.app.Activity;
+import android.app.Application;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import cs.campusquest.dataStructures.quest.quest;
 import cs.campusquest.dummy.DummyContent;
 
 /**
@@ -30,6 +34,7 @@ public class activeQuestFragment extends Fragment implements AbsListView.OnItemC
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private AppState state;
+    private int indexOfArr = 0;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -74,9 +79,25 @@ public class activeQuestFragment extends Fragment implements AbsListView.OnItemC
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        Application application = (Application)AppState.getContext();
+        this.state = (AppState)application;
+
         // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+        // TODO: this array should only be populated by nonactive (false) quests.
+        ArrayList myArr = new ArrayList();
+        try {
+            for (int i = 0; i < this.state.getQuestData().getQuestList().size(); i++) {
+                if (this.state.getQuestData().getQuestList().getQuest(i).isActive()){
+                    myArr.add(this.indexOfArr, this.state.getQuestData().getQuestList().getQuest(i).getQuestName());
+                    this.indexOfArr++;
+                }
+
+            }
+        } catch (NullPointerException e){
+
+        }
+        mAdapter = new ArrayAdapter<quest>(getActivity(),
+                android.R.layout.simple_expandable_list_item_1, android.R.id.text1, myArr);
     }
 
     @Override
@@ -116,7 +137,8 @@ public class activeQuestFragment extends Fragment implements AbsListView.OnItemC
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            //changed the returned int type from getQuestID to string to match the onFragmentInteraction listener TODO:
+            mListener.onFragmentInteraction(Integer.toString(this.state.getQuestData().getQuestList().getQuest(position).getQuestID()));
         }
     }
 
