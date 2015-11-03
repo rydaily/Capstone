@@ -15,7 +15,7 @@ import cs.campusquest.managers.*;
 public class AppState extends Application{
 
     private static Context mContext;
-    questManager hQuestData;
+    private questManager hQuestData;
     private int selectedQuestID;
 
     public AppState(){
@@ -27,6 +27,10 @@ public class AppState extends Application{
     public static Context getContext(){
         return mContext;
     }
+
+     public questManager getQuestData(){
+         return this.hQuestData;
+     }
 
     public void setQuestData(questManager _hQuestData){
         hQuestData = _hQuestData;
