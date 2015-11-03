@@ -33,6 +33,7 @@ public class AppState extends Application{
      }
 
     public void setQuestData(questManager _hQuestData){
+
         hQuestData = _hQuestData;
     }
 
@@ -41,7 +42,19 @@ public class AppState extends Application{
     }
 
     public void setSelectedQuestID(int _selectedQuestID){
-        this.selectedQuestID = _selectedQuestID;
+        //any time setSelectedQuestID is called needs to be in a try catch statement
+        boolean isValid = false;
+        for (int i = 0; i < this.hQuestData.getQuestList().size(); i++){
+            if (this.hQuestData.getQuestList().getQuest(i).getQuestID() == _selectedQuestID){
+                isValid = true;
+            }
+        }
+
+        if (isValid) {
+            this.selectedQuestID = _selectedQuestID;
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
     public int getSelectedQuestID(){ return this.selectedQuestID;}
