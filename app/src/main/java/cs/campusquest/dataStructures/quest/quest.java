@@ -17,7 +17,7 @@ public class quest {
     public quest(int _iQuestID, String _sQuestName, String _sQuestDescription, boolean _bIsActive, boolean _bIsComplete){
         setQuestID(_iQuestID);
         setQuestName(_sQuestName);
-        setsQuestDescription(_sQuestDescription);
+        setQuestDescription(_sQuestDescription);
         setActiveFlag(_bIsActive);
         setCompletionFlag(_bIsComplete);
     }
@@ -25,7 +25,7 @@ public class quest {
     public quest(DummyContent.DummyQuest _dQuest){
         setQuestID(_dQuest.qId);
         setQuestName(_dQuest.qTitle);
-        setsQuestDescription(_dQuest.qDescription);
+        setQuestDescription(_dQuest.qDescription);
         setActiveFlag(_dQuest.qIsActive);
         setCompletionFlag(_dQuest.qIsComplete);
     }
@@ -40,7 +40,7 @@ public class quest {
         return;
     }
 
-    public void setsQuestDescription(String _sQuestDescription){
+    public void setQuestDescription(String _sQuestDescription){
         this.sQuestDescription = _sQuestDescription;
         return;
     }

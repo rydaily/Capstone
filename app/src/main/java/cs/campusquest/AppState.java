@@ -16,10 +16,12 @@ public class AppState extends Application{
 
     private static Context mContext;
     questManager hQuestData;
+    private int selectedQuestID;
 
     public AppState(){
         hQuestData = null;
         this.mContext = this;
+        this.selectedQuestID = -1;
     }
 
     public static Context getContext(){
@@ -33,4 +35,10 @@ public class AppState extends Application{
     public void setDummyData() {
         this.hQuestData = new questManager(true);
     }
+
+    public void setSelectedQuestID(int _selectedQuestID){
+        this.selectedQuestID = _selectedQuestID;
+    }
+
+    public int getSelectedQuestID(){ return this.selectedQuestID;}
 }

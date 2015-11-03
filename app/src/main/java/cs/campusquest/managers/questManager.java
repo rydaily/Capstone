@@ -9,7 +9,7 @@ public class questManager {
      * to a single quest that has either been loaded from the device's local database, or the
      * server.
      */
-    public questList hQuestList;
+    private questList hQuestList;
 
     public questManager(){
         this.hQuestList = new questList();
@@ -22,6 +22,10 @@ public class questManager {
         }
         return;
 
+    }
+
+    public questList getQuestList(){
+        return this.hQuestList;
     }
 
     private void populateQuestList(){

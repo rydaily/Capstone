@@ -90,8 +90,8 @@ public class availableQuestFragment extends Fragment implements AbsListView.OnIt
         // TODO: Change Adapter to display your content
         ArrayList myArr = new ArrayList();
         try {
-            for (int i = 0; i < this.state.hQuestData.hQuestList.size(); i++) {
-                myArr.add(i, this.state.hQuestData.hQuestList.getQuest(i).getQuestName());
+            for (int i = 0; i < this.state.hQuestData.getQuestList().size(); i++) {
+                myArr.add(i, this.state.hQuestData.getQuestList().getQuest(i).getQuestName());
             }
         } catch (NullPointerException e){
 
@@ -140,7 +140,7 @@ public class availableQuestFragment extends Fragment implements AbsListView.OnIt
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
             //changed the returned int type from getQuestID to string to match the onFragmentInteraction listener TODO:
-            mListener.onFragmentInteraction(Integer.toString(this.state.hQuestData.hQuestList.getQuest(position).getQuestID()));
+            mListener.onFragmentInteraction(Integer.toString(this.state.hQuestData.getQuestList().getQuest(position).getQuestID()));
         }
         showInfoPopUp(position);
 
@@ -149,11 +149,15 @@ public class availableQuestFragment extends Fragment implements AbsListView.OnIt
     private void showInfoPopUp(int index){
         /*http://stackoverflow.com/questions/2115758/how-to-display-alert-dialog-in-android*/
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-        builder1.setMessage(this.state.hQuestData.hQuestList.getQuest(index).getQuestDescription());
+        builder1.setMessage(this.state.hQuestData.getQuestList().getQuest(index).getQuestDescription());
         builder1.setCancelable(true);
         builder1.setPositiveButton("Add",
-                new DialogInterface.OnClickListener() {
+                new DialogInterface.OnClickListener(){
+                    private AppState state;
                     public void onClick(DialogInterface dialog, int id) {
+                        Application application = (Application)AppState.getContext();
+                        this.state = (AppState)application;
+                        //this.state.hQuestData.hQuestList.getQuest(id).setActiveFlag(true);
                         dialog.cancel();
                     }
                 });
@@ -166,6 +170,7 @@ public class availableQuestFragment extends Fragment implements AbsListView.OnIt
 
         AlertDialog alert11 = builder1.create();
         alert11.show();
+
     }
 
     /**
