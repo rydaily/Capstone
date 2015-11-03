@@ -1,0 +1,251 @@
+-- Generation Time: Nov 02, 2015 at 08:52 PM
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `capstonedb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gpscoordinate`
+--
+
+CREATE TABLE IF NOT EXISTS `gpscoordinate` (
+  `location` text NOT NULL,
+  `lat` float NOT NULL,
+  `long` float NOT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lobby`
+--
+
+CREATE TABLE IF NOT EXISTS `lobby` (
+  `questID` int(11) NOT NULL,
+  `LobbyID` int(11) NOT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qrcode`
+--
+
+CREATE TABLE IF NOT EXISTS `qrcode` (
+  `codeID` int(11) NOT NULL,
+  `qrString` text NOT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `questconditions`
+--
+
+CREATE TABLE IF NOT EXISTS `questconditions` (
+  `questID` int(11) NOT NULL,
+  `winConditionID` int(11) NOT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `questrewards`
+--
+
+CREATE TABLE IF NOT EXISTS `questrewards` (
+  `rewardID` int(11) DEFAULT NULL,
+  `questID` int(11) DEFAULT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quests`
+--
+
+CREATE TABLE IF NOT EXISTS `quests` (
+  `id` int(11) NOT NULL,
+  `type` varchar(25) NOT NULL,
+  `description` text NOT NULL,
+  `status` varchar(255) NOT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rewards`
+--
+
+CREATE TABLE IF NOT EXISTS `rewards` (
+  `id` int(11) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `value` int(11) NOT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE IF NOT EXISTS `sessions` (
+  `id` int(11) NOT NULL,
+  `userID` int(11) NOT NULL,
+  `dateIssued` date NOT NULL,
+  `deviceID` int(11) NOT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `userquests`
+--
+
+CREATE TABLE IF NOT EXISTS `userquests` (
+  `userID` int(11) NOT NULL,
+  `questID` int(11) NOT NULL,
+  `status` varchar(255) NOT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `name` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL,
+  `points` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usersinlobby`
+--
+
+CREATE TABLE IF NOT EXISTS `usersinlobby` (
+  `lobbyID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wincondition`
+--
+
+CREATE TABLE IF NOT EXISTS `wincondition` (
+  `id` int(11) NOT NULL,
+  `requirements` text NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `conditionID` int(11) NOT NULL
+) ;
+
+--
+-- Indexes for table `lobby`
+--
+ALTER TABLE `lobby`
+ ADD PRIMARY KEY (`LobbyID`), ADD KEY `questID` (`questID`);
+
+--
+-- Indexes for table `questconditions`
+--
+ALTER TABLE `questconditions`
+ ADD KEY `questID` (`questID`), ADD KEY `winConditionID` (`winConditionID`);
+
+--
+-- Indexes for table `questrewards`
+--
+ALTER TABLE `questrewards`
+ ADD KEY `rewardID` (`rewardID`), ADD KEY `questID` (`questID`);
+
+--
+-- Indexes for table `quests`
+--
+ALTER TABLE `quests`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `rewards`
+--
+ALTER TABLE `rewards`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+ ADD PRIMARY KEY (`id`), ADD KEY `userID` (`userID`);
+
+--
+-- Indexes for table `userquests`
+--
+ALTER TABLE `userquests`
+ ADD KEY `userID` (`userID`), ADD KEY `questID` (`questID`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `usersinlobby`
+--
+ALTER TABLE `usersinlobby`
+ ADD KEY `lobbyID` (`lobbyID`), ADD KEY `userID` (`userID`);
+
+--
+-- Indexes for table `wincondition`
+--
+ALTER TABLE `wincondition`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Constraints for table `lobby`
+--
+ALTER TABLE `lobby`
+ADD CONSTRAINT `lobby_ibfk_1` FOREIGN KEY (`questID`) REFERENCES `quests` (`id`);
+
+--
+-- Constraints for table `questconditions`
+--
+ALTER TABLE `questconditions`
+ADD CONSTRAINT `questconditions_ibfk_1` FOREIGN KEY (`questID`) REFERENCES `quests` (`id`),
+ADD CONSTRAINT `questconditions_ibfk_2` FOREIGN KEY (`winConditionID`) REFERENCES `wincondition` (`id`);
+
+--
+-- Constraints for table `questrewards`
+--
+ALTER TABLE `questrewards`
+ADD CONSTRAINT `questrewards_ibfk_1` FOREIGN KEY (`rewardID`) REFERENCES `rewards` (`id`),
+ADD CONSTRAINT `questrewards_ibfk_2` FOREIGN KEY (`questID`) REFERENCES `quests` (`id`);
+
+--
+-- Constraints for table `sessions`
+--
+ALTER TABLE `sessions`
+ADD CONSTRAINT `sessions_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `userquests`
+--
+ALTER TABLE `userquests`
+ADD CONSTRAINT `userquests_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`id`),
+ADD CONSTRAINT `userquests_ibfk_2` FOREIGN KEY (`questID`) REFERENCES `quests` (`id`);
+
+--
+-- Constraints for table `usersinlobby`
+--
+ALTER TABLE `usersinlobby`
+ADD CONSTRAINT `usersinlobby_ibfk_1` FOREIGN KEY (`lobbyID`) REFERENCES `lobby` (`LobbyID`),
+ADD CONSTRAINT `usersinlobby_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`id`);
