@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS "GPSCoordinates" (
 CREATE TABLE IF NOT EXISTS "Lobbies" (
   "lobbyID" int(10)  NOT NULL,
   "questID" int(10)  NOT NULL,
-  PRIMARY KEY ("lobbyID","questID")
+  PRIMARY KEY ("lobbyID")
   CONSTRAINT "fk_Lobbies_1" FOREIGN KEY ("questID") REFERENCES "Quests" ("questID") ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE IF NOT EXISTS "QrCodes" (
