@@ -17,6 +17,7 @@ public class AppState extends Application{
     private static Context mContext;
     private questManager hQuestData;
     private int selectedQuestID;
+    private int sessionID;
 
     public AppState(){
         hQuestData = null;
@@ -24,6 +25,13 @@ public class AppState extends Application{
         this.selectedQuestID = -1;
     }
 
+    public static void setmContext(Context mContext) {
+        AppState.mContext = mContext;
+    }
+
+    public int getSessionID() {
+        return sessionID;
+    }
     public static Context getContext(){
         return mContext;
     }

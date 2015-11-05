@@ -1,19 +1,25 @@
 package cs.campusquest;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import cs.campusquest.serverAPI.TCPClient;
 
 public class MainActivity extends AppCompatActivity {
     Button btnLogIn, btnRegister, btnRegisterSubmit;
     ImageView imgCrossroad;
     EditText txtUsername, txtEmail, txtPassword, txtConfirmPassword;
     boolean isCrossroadShifted, isCrossroadShiftedLeft;
+    private TCPClient mTcpClient;
+    private ArrayList<String> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
     public void submitRegister(){
         //do validation?
         //then submit if client-side validation passes
+        //new connectTask().execute("");
+
+
     }
 
     public void submitLogin(){
@@ -131,6 +140,31 @@ public class MainActivity extends AppCompatActivity {
         if (this.txtUsername.getText().toString().equals("ryanslaptop") && this.txtPassword.getText().toString().equals("isawesome")){
             //clientside login successful
             goToHomeActivity();
+        }
+    }
+
+    public class connectTask extends AsyncTask<String,String,TCPClient> {
+
+        @Override
+        protected TCPClient doInBackground(String... message) {
+
+            //we create a TCPClient object and
+            mTcpClient = new TCPClient(new TCPClient.OnMessageReceived() {
+                @Override
+                //here the messageReceived method is implemented
+                public void messageReceived(String message) {
+                    //this method calls the onProgressUpdate
+                    publishProgress(message);
+                }
+            });
+            mTcpClient.run();
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
         }
     }
 }
