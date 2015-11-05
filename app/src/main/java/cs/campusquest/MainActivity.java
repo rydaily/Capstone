@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
     public void submitRegister(){
         //do validation?
         //then submit if client-side validation passes
-        //new connectTask().execute("");
+        new connectTask().execute("");
 
 
     }

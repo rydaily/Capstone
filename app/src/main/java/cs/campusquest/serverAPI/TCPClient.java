@@ -12,7 +12,7 @@ import java.net.Socket;
 public class TCPClient {
 
     private String serverMessage;
-    public static final String SERVERIP = "www.evilmania.net"; //your computer IP address
+    public static final String SERVERIP = "45.55.220.62"; //your computer IP address
     public static final int SERVERPORT = 5555;
     private OnMessageReceived mMessageListener = null;
     private boolean mRun = false;
@@ -59,7 +59,8 @@ public class TCPClient {
 
                 //send the message to the server
                 out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-                out.print("helloserver");
+                out.print("{ \"Request\":\"Login\" }");
+                out.flush();
                 Log.e("TCP Client", "Sent that server hello");
 
                 Log.e("TCP Client", "C: Sent.");
