@@ -36,23 +36,24 @@ implements NavigationView.OnNavigationItemSelectedListener,
 
     private AppState state;
     private GoogleApiClient mGoogleApiClient;
-    private Location mLastLocation;
     public String geoLoc = "null";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.state = (AppState) getApplicationContext();
+
+        buildGoogleApiClient();
+
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        buildGoogleApiClient();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                displayGPS();
                 Snackbar.make(view, geoLoc, Snackbar.LENGTH_LONG)
                         .setAction(geoLoc, null).show();
             }
@@ -165,30 +166,40 @@ implements NavigationView.OnNavigationItemSelectedListener,
     public void onFragmentInteraction(String id){
         //do magic
     }
-
+    // Google API Functions for GPS Location
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
+        mGoogleApiClient.connect();
     }
 
     @Override
     public void onConnected(Bundle connectionHint) {
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        if (mLastLocation != null) {
-            geoLoc = String.valueOf(mLastLocation.getLatitude()) + String.valueOf(mLastLocation.getLongitude());
+    }
+
+    public Location getGPS(){
+        return LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+    }
+    public void displayGPS(){
+        Location temp = getGPS();
+        if (temp != null) {
+            geoLoc = "lat: " + String.valueOf(temp.getLatitude()) + " long: " + String.valueOf(temp.getLongitude());
+        }
+        else{
+            geoLoc = "GPS Unavailable";
         }
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-        System.out.println("connection suspended");
+        geoLoc = "GPS Service Suspended";
     }
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        System.out.println("connection failed");
+        geoLoc = "GPS Unavailable";
     }
 }
