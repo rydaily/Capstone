@@ -1,5 +1,6 @@
 package cs.campusquest;
-
+;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,9 +20,25 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
+
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, activeQuestFragment.OnFragmentInteractionListener, ItemFragment.OnFragmentInteractionListener, availableQuestFragment.OnFragmentInteractionListener, friendsFragment.OnFragmentInteractionListener, trophyFragment.OnFragmentInteractionListener, friendsQrFragment.OnFragmentInteractionListener{
+implements NavigationView.OnNavigationItemSelectedListener,
+        activeQuestFragment.OnFragmentInteractionListener,
+        ItemFragment.OnFragmentInteractionListener,
+        availableQuestFragment.OnFragmentInteractionListener,
+        friendsFragment.OnFragmentInteractionListener,
+        trophyFragment.OnFragmentInteractionListener,
+        friendsQrFragment.OnFragmentInteractionListener,
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
+
     private AppState state;
+    private GoogleApiClient mGoogleApiClient;
+    private Location mLastLocation;
+    public String geoLoc = "null";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +47,14 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        buildGoogleApiClient();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, geoLoc, Snackbar.LENGTH_LONG)
+                        .setAction(geoLoc, null).show();
             }
         });
 
@@ -145,5 +164,31 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(String id){
         //do magic
+    }
+
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+    }
+
+    @Override
+    public void onConnected(Bundle connectionHint) {
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (mLastLocation != null) {
+            geoLoc = String.valueOf(mLastLocation.getLatitude()) + String.valueOf(mLastLocation.getLongitude());
+        }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        System.out.println("connection suspended");
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        System.out.println("connection failed");
     }
 }
