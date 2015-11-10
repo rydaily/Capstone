@@ -59,8 +59,8 @@ public class TCPClient {
 
                 //send the message to the server
                 out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-                out.print("{ \"Request\":\"Login\" }");
-                out.flush();
+//                out.print("{ \"Request\":\"Hello\" }");
+//                out.flush();
                 Log.e("TCP Client", "Sent that server hello");
 
                 Log.e("TCP Client", "C: Sent.");
