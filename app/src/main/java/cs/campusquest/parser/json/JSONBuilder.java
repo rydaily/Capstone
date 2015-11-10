@@ -9,15 +9,15 @@ import java.util.ArrayList;
 /**
  * Created by vv on 11/4/2015.
  */
-public class JSONBuilder {
+public final class JSONBuilder {
     //in this class, each function returns a JSONObject of the function it describes
     //ie requestLogin means it is a JSONObject that contains the necessary fields and components for a login request
     //in use, do requestLogin(un, pw).toString() to get a formatted JSONString to pass into a socket to the server
 
-    public JSONBuilder(){
+    private JSONBuilder(){
     }
 
-    public JSONObject requestLogin(String _username, String _password){
+    public static JSONObject requestLogin(String _username, String _password){
         //build a jsonobject for login
         //
         JSONObject myJObject = new JSONObject();
@@ -32,7 +32,7 @@ public class JSONBuilder {
         return myJObject;
     }
 
-    public JSONObject requestRegister(String _username, String _email, String _password){
+    public static JSONObject requestRegister(String _username, String _email, String _password){
         JSONObject myJObject = new JSONObject();
         try {
             myJObject.put("Request", "Register");
@@ -46,7 +46,7 @@ public class JSONBuilder {
         return myJObject;
     }
 
-    public JSONObject requestQuestQuery(){
+    public static JSONObject requestQuestQuery(){
         JSONObject myJObject = new JSONObject();
         try {
             myJObject.put("Request", "QuestQuery");
@@ -57,7 +57,7 @@ public class JSONBuilder {
         return myJObject;
     }
 
-    public JSONObject requestQuest(int _questID){
+    public static JSONObject requestQuest(int _questID){
         JSONObject myJObject = new JSONObject();
         try {
             myJObject.put("Request", "Quest");

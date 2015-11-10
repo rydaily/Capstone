@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+import cs.campusquest.parser.json.JSONBuilder;
 import cs.campusquest.serverAPI.TCPClient;
 
 public class MainActivity extends AppCompatActivity {
@@ -125,10 +126,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitRegister(){
         //do validation?
+        if (!this.txtPassword.getText().toString().equals(this.txtConfirmPassword.getText().toString())){
+            //display some error message that passwords do not match
+            return;
+        }
         //then submit if client-side validation passes
+        //starts tcp client, new socket connection etc
         new connectTask().execute("");
 
-
+        //now pass it the message
+        //sendMessage wants a String; JSONBuilder.requestRegister returns a JSONObject which must then be called toString() on
+        if (mTcpClient != null){
+            mTcpClient.sendMessage(JSONBuilder.requestRegister(this.txtUsername.getText().toString(), this.txtEmail.getText().toString(), this.txtPassword.getText().toString()).toString());
+        }
     }
 
     public void submitLogin(){
