@@ -164,7 +164,11 @@ public class MainActivity extends AppCompatActivity {
                 //here the messageReceived method is implemented
                 public void messageReceived(String message) {
                     //this method calls the onProgressUpdate
+                    //message should be a json string
+                    //this method needs to call the jsonstring demultiplexer? TODO figure out where the client interprets the servers reply
                     publishProgress(message);
+
+                    //some JSONParser class for reading the reply then executing?
                 }
             });
             mTcpClient.run();
