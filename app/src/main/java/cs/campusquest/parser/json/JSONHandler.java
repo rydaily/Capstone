@@ -28,4 +28,18 @@ public class JSONHandler {
 
         return myJObject;
     }
+
+    public JSONObject buildRegister(String _username, String _email, String _password){
+        JSONObject myJObject = new JSONObject();
+        try {
+            myJObject.put("Request", "Register");
+            myJObject.put("Username", _username);
+            myJObject.put("Email", _email);
+            myJObject.put("Password", _password);
+        } catch (JSONException e){
+            Log.v("campusquest", "jobject register creation problem");
+        }
+
+        return myJObject;
+    }
 }
